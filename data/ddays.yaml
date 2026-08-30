@@ -1,0 +1,138 @@
+# 기념일 정본 데이터 (Single Source of Truth)
+#
+# 출처: 더데이비포(the day before) 앱 기념일 목록 (14건), 2026-08-31 기준 스크린샷
+# 규칙: 이 파일만 수정하면 됩니다. D-day 숫자와 ICS는 scripts/dday.py 가 계산합니다.
+#       계산된 값을 이 파일에 적어두지 마세요. 하루만 지나도 틀립니다.
+#
+# 필드 설명은 CLAUDE.md 의 "데이터 스키마" 절 참고.
+
+meta:
+  source: "the day before (더데이비포) 앱 공유 목록"
+  captured_on: 2026-08-31          # 스크린샷 기준일 (KST)
+  timezone: Asia/Seoul
+  count: 14
+
+groups:
+  ours:      "우리 가족"
+  parents:   "아버지·어머니 (본가로 추정)"
+  parents_in_law: "아버님·어머님 (처가/시가로 추정)"
+  junhui:    "준희네"
+  unsorted:  "관계 미확인"
+
+ddays:
+  # ── 우리 가족 ─────────────────────────────────────────────
+  - id: wedding-ours
+    title: "결혼기념일"
+    type: anniversary
+    group: ours
+    calendar: solar
+    date: 2012-09-07
+
+  - id: eunhye-birth
+    title: "은혜 탄생"
+    type: birth
+    group: ours
+    calendar: solar
+    date: 2014-05-31
+
+  - id: hyerim-birth
+    title: "혜림 탄생"
+    type: birth
+    group: ours
+    calendar: solar
+    date: 2017-05-02
+    icon: cake                      # 앱에서 케이크 아이콘으로 표시되던 항목
+
+  # ── 아버지·어머니 ────────────────────────────────────────
+  - id: father-birthday
+    title: "아버지 생신"
+    type: birthday
+    group: parents
+    calendar: lunar
+    lunar_month: 3
+    lunar_day: 20
+    lunar_leap: false
+    origin_year: null               # 앱에 출생연도 없음 (음력 월/일만 표시)
+
+  - id: mother-birthday
+    title: "어머니 생신"
+    type: birthday
+    group: parents
+    calendar: lunar
+    lunar_month: 4
+    lunar_day: 29
+    lunar_leap: false
+    origin_year: null
+
+  - id: wedding-parents
+    title: "결혼기념일 (아버지 어머니)"
+    type: anniversary
+    group: parents
+    calendar: solar
+    date: 1978-01-27
+
+  # ── 아버님·어머님 ────────────────────────────────────────
+  - id: father-in-law-birthday
+    title: "아버님 생신"
+    type: birthday
+    group: parents_in_law
+    calendar: lunar
+    lunar_month: 5
+    lunar_day: 11
+    lunar_leap: false
+    origin_year: null
+
+  - id: mother-in-law-birthday
+    title: "어머님 생신"
+    type: birthday
+    group: parents_in_law
+    calendar: lunar
+    lunar_month: 9
+    lunar_day: 13
+    lunar_leap: false
+    origin_year: null
+
+  - id: wedding-parents-in-law
+    title: "결혼기념일 (아버님 어머님)"
+    type: anniversary
+    group: parents_in_law
+    calendar: solar
+    date: 1980-04-12
+
+  # ── 준희네 ───────────────────────────────────────────────
+  - id: junhui-birthday
+    title: "(준희네) 준희 생일"
+    type: birthday
+    group: junhui
+    calendar: solar
+    date: 1980-08-31
+    icon: cake
+
+  - id: jesussi-birthday
+    title: "(준희네) 제수씨 생일"
+    type: birthday
+    group: junhui
+    calendar: solar
+    date: 1979-09-03
+
+  - id: younghu-birthday
+    title: "(준희네) 영후 생일"
+    type: birthday
+    group: junhui
+    calendar: solar
+    date: 2011-03-06
+
+  # ── 관계 미확인 ──────────────────────────────────────────
+  - id: hyesang-birth
+    title: "혜상 탄생"
+    type: birth
+    group: unsorted
+    calendar: solar
+    date: 1981-11-07
+
+  - id: jinho-birthday
+    title: "진호 생일"
+    type: birthday
+    group: unsorted
+    calendar: solar
+    date: 1984-03-23

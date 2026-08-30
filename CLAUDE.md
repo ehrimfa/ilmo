@@ -1,0 +1,76 @@
+# 기념일 관리 규칙 (비서용)
+
+이 저장소는 가족 기념일 14건을 관리한다. 아래 규칙을 지켜라.
+
+## 핵심 규칙
+
+1. **정본은 `data/ddays.yaml` 하나뿐이다.** 기념일을 추가·수정·삭제할 때는 이 파일만 고친다.
+2. **D-day 숫자를 문서·메모·대화에 적어 저장하지 마라.** 하루만 지나도 틀린다.
+   "며칠 남았어?" 류의 질문에는 반드시 스크립트를 실행해서 답한다.
+3. **음력 생신 4건은 매년 양력 날짜가 달라진다.** 작년 날짜를 재사용하지 말고 항상 변환한다.
+   변환은 `korean_lunar_calendar` 라이브러리가 담당하며, 스크립트가 알아서 처리한다.
+4. `data/ddays.yaml` 을 고쳤으면 **`check` → `ics` 순서로 실행**하고 결과를 커밋한다.
+
+## 명령어
+
+```bash
+pip install -r requirements.txt        # 최초 1회
+
+python3 scripts/dday.py list           # 전체 목록 (D-day 오름차순)
+python3 scripts/dday.py list --within 30       # 30일 안에 오는 것만
+python3 scripts/dday.py list --group ours      # 그룹별 (ours/parents/parents_in_law/junhui/unsorted)
+python3 scripts/dday.py check          # 데이터 검증 — 수정 후 반드시 실행
+python3 scripts/dday.py ics --years 10 # dist/ddays.ics 재생성
+python3 scripts/dday.py --on 2027-01-01 list   # 특정 날짜 기준으로 조회
+```
+
+기준일은 기본적으로 **Asia/Seoul 기준 오늘**이다. `--on` 은 검증·미리보기용.
+
+## 데이터 스키마
+
+```yaml
+- id: mother-birthday        # 영문 소문자-하이픈, 고유값. 한번 정하면 바꾸지 않는다(ICS UID 로 쓰임)
+  title: "어머니 생신"          # 앱/캘린더에 표시되는 이름
+  type: birthday             # birthday(생일·생신) | anniversary(결혼기념일) | birth(탄생)
+  group: parents             # groups: 절에 정의된 키만 사용
+  calendar: lunar            # solar | lunar
+  # calendar: solar 이면 ↓
+  date: 1981-11-07           # 양력 원본 날짜 (YYYY-MM-DD)
+  # calendar: lunar 이면 ↓
+  lunar_month: 4
+  lunar_day: 29
+  lunar_leap: false          # 윤달이면 true
+  origin_year: null          # 원년(출생연도). 모르면 null → 나이 계산은 생략된다
+```
+
+`type` 은 표시 문구를 결정한다: `anniversary` 는 "N주년", 나머지는 "만 N세".
+`origin_year` 가 `null` 인 음력 4건은 나이가 계산되지 않는다 — 출생연도를 알게 되면 채워 넣어라.
+
+## 새 기념일 추가 절차
+
+1. `data/ddays.yaml` 의 `ddays:` 에 항목 추가 (해당 그룹 블록 안에)
+2. `meta.count` 를 실제 개수에 맞게 수정
+3. `python3 scripts/dday.py check` 통과 확인
+4. `python3 scripts/dday.py ics --years 10` 으로 `dist/ddays.ics` 재생성
+5. 커밋
+
+## 확인이 필요한 항목
+
+사용자에게 물어서 채워야 할 것들 — 임의로 단정하지 마라.
+
+- **`hyesang-birth`(혜상 탄생, 1981.11.07), `jinho-birthday`(진호 생일, 1984.03.23)**:
+  관계 미상이라 `group: unsorted` 로 두었다. 관계를 확인하면 알맞은 그룹으로 옮겨라.
+- **그룹 이름 추정**: 한국어 관행상 `아버지/어머니`는 본인 부모, `아버님/어머님`은 배우자 부모로
+  가정해 `parents` / `parents_in_law` 로 나눴다. 사실과 다르면 `groups:` 의 설명만 고치면 된다.
+- **음력 4건의 출생연도**: 앱에 없어 `origin_year: null`.
+
+## 데이터 출처와 검증
+
+더데이비포(the day before) 앱 화면 캡처 2장(2026-08-31 KST 기준)에서 옮겼다. 옮긴 직후:
+
+- 양력 10건의 **요일이 앱 표시와 전부 일치**함을 확인했다.
+- 14건의 **D-day 계산값이 앱 표시와 전부 일치**함을 확인했다
+  (D-DAY, 3, 7, 53, 68, 149, 187, 204, 224, 238, 244, 273, 276, 288).
+
+데이터 구조를 바꿨다면 `--on 2026-08-31 list` 로 위 숫자가 그대로 나오는지 확인하면
+회귀 여부를 알 수 있다.
