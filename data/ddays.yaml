@@ -59,6 +59,8 @@ ddays:
   # ── 아버지·어머니 ────────────────────────────────────────
   - id: father-birthday
     title: "아버지 생신"
+    name: "나정평"
+    relation: "아버지"
     type: birthday
     group: parents
     calendar: lunar
@@ -69,6 +71,8 @@ ddays:
 
   - id: mother-birthday
     title: "어머니 생신"
+    name: "김광순"
+    relation: "어머니"
     type: birthday
     group: parents
     calendar: lunar
