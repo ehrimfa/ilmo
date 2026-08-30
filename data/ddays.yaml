@@ -60,7 +60,7 @@ ddays:
     lunar_month: 3
     lunar_day: 20
     lunar_leap: false
-    origin_year: null               # 앱에 출생연도 없음 (음력 월/일만 표시)
+    origin_year: 1955                # 음력 기준 출생연도
 
   - id: mother-birthday
     title: "어머니 생신"
@@ -70,7 +70,7 @@ ddays:
     lunar_month: 4
     lunar_day: 29
     lunar_leap: false
-    origin_year: null
+    origin_year: 1956
 
   - id: wedding-parents
     title: "결혼기념일 (아버지 어머니)"
@@ -89,7 +89,7 @@ ddays:
     lunar_month: 5
     lunar_day: 11
     lunar_leap: false
-    origin_year: null
+    origin_year: 1950
 
   - id: mother-in-law-birthday
     title: "어머님 생신"
@@ -100,7 +100,7 @@ ddays:
     lunar_month: 9
     lunar_day: 13
     lunar_leap: false
-    origin_year: null
+    origin_year: 1955
 
   - id: wedding-parents-in-law
     title: "결혼기념일 (아버님 어머님)"
