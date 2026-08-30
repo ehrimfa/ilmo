@@ -39,6 +39,7 @@ ddays:
 
   - id: eunhye-birth
     title: "은혜 탄생"
+    name: "나은혜"
     relation: "자녀"
     type: birth
     group: ours
@@ -47,6 +48,7 @@ ddays:
 
   - id: hyerim-birth
     title: "혜림 탄생"
+    name: "나혜림"
     relation: "자녀"
     type: birth
     group: ours
