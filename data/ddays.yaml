@@ -7,6 +7,7 @@
 # 필드 설명은 CLAUDE.md 의 "데이터 스키마" 절 참고.
 
 meta:
+  owner: "나융희"                  # 아래 관계는 모두 이 분 기준
   source: "the day before (더데이비포) 앱 공유 목록"
   captured_on: 2026-08-31          # 스크린샷 기준일 (KST)
   timezone: Asia/Seoul
@@ -16,7 +17,7 @@ groups:
   ours:           "우리 가족"
   parents:        "본가 (아버지·어머니)"
   parents_in_law: "처가 (아버님·어머님)"
-  junhui:         "준희네"
+  junhui:         "준희네 (남동생 가족)"
 
 ddays:
   # ── 우리 가족 ─────────────────────────────────────────────
@@ -38,6 +39,7 @@ ddays:
 
   - id: eunhye-birth
     title: "은혜 탄생"
+    relation: "자녀"
     type: birth
     group: ours
     calendar: solar
@@ -45,6 +47,7 @@ ddays:
 
   - id: hyerim-birth
     title: "혜림 탄생"
+    relation: "자녀"
     type: birth
     group: ours
     calendar: solar
@@ -121,6 +124,8 @@ ddays:
   # ── 준희네 ───────────────────────────────────────────────
   - id: junhui-birthday
     title: "(준희네) 준희 생일"
+    name: "나준희"
+    relation: "남동생"
     type: birthday
     group: junhui
     calendar: solar
@@ -129,6 +134,8 @@ ddays:
 
   - id: jesussi-birthday
     title: "(준희네) 제수씨 생일"
+    name: "정희현"
+    relation: "제수씨"
     type: birthday
     group: junhui
     calendar: solar
@@ -136,6 +143,8 @@ ddays:
 
   - id: younghu-birthday
     title: "(준희네) 영후 생일"
+    name: "나영후"
+    relation: "조카"
     type: birthday
     group: junhui
     calendar: solar
