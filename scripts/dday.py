@@ -90,6 +90,12 @@ def count_label(entry, when):
     return f"만 {n}세"
 
 
+def who_label(entry):
+    """이름/관계 표시. 예: (박혜상·아내), (아버지)"""
+    parts = [entry[k] for k in ("name", "relation") if entry.get(k)]
+    return f"({'·'.join(parts)})" if parts else ""
+
+
 def dday_label(days):
     return "D-DAY" if days == 0 else f"D-{days}"
 
@@ -112,6 +118,7 @@ def rows(data, today, group=None, within=None):
             "dday": dday_label(days),
             "weekday": WEEKDAYS[nxt.weekday()],
             "count": count_label(e, nxt),
+            "who": who_label(e),
         })
     out.sort(key=lambda r: (r["days"], r["entry"]["title"]))
     return out
@@ -128,7 +135,8 @@ def cmd_list(data, args, today):
         else:
             src = e["date"].strftime("%Y.%m.%d")
         extra = f"  {r['count']}" if r["count"] else ""
-        print(f"{r['dday']:>7}  {r['next']}({r['weekday']})  {e['title']:<24} "
+        title = f"{e['title']} {r['who']}".strip()
+        print(f"{r['dday']:>7}  {r['next']}({r['weekday']})  {title:<32} "
               f"[{groups[e['group']]}]  원본 {src}{extra}")
     return 0
 
@@ -220,7 +228,7 @@ def cmd_ics(data, args, today):
         gname = data["groups"][e["group"]]
         if e["calendar"] == "solar":
             first = next_occurrence(e, today)
-            desc = f"{gname} · 원본 {e['date']:%Y.%m.%d} (양력)"
+            desc = f"{gname}{who_label(e) and ' ' + who_label(e)} · 원본 {e['date']:%Y.%m.%d} (양력)"
             event(e["id"], first, e["title"], desc, "RRULE:FREQ=YEARLY")
             n += 1
         else:
@@ -228,7 +236,7 @@ def cmd_ics(data, args, today):
             for d in occurrences(e, today.year, args.years):
                 if d < today:
                     continue
-                desc = f"{gname} · 원본 {src} (음력에서 매년 변환)"
+                desc = f"{gname}{who_label(e) and ' ' + who_label(e)} · 원본 {src} (음력에서 매년 변환)"
                 event(f"{e['id']}-{d:%Y}", d, e["title"], desc)
                 n += 1
 
