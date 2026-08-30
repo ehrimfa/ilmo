@@ -85,6 +85,7 @@ ddays:
   # ── 아버님·어머님 ────────────────────────────────────────
   - id: father-in-law-birthday
     title: "아버님 생신"
+    name: "박철완"
     relation: "장인어른"
     type: birthday
     group: parents_in_law
@@ -96,6 +97,7 @@ ddays:
 
   - id: mother-in-law-birthday
     title: "어머님 생신"
+    name: "오려옥"
     relation: "장모님"
     type: birthday
     group: parents_in_law
