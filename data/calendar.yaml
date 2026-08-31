@@ -50,15 +50,27 @@ yearly:
   - dday_id: jinho-birthday
     event_id: f82b2b11ff3dvunpj1ja35hvn0
     summary: "박진호 생일 (처남)"
+  - dday_id: junhui-birthday
+    event_id: uesgoor7ietu6msa3jht3dfbfg
+    summary: "나준희 생일 (남동생)"
+    note: |
+      원래 BIRTHDAY 유형 일정으로 08-30 에 들어 있었다(정본은 08-31).
+      BIRTHDAY 유형은 날짜 수정도 생성도 API 로 막혀 있어, 일반 반복 일정으로 새로 만들고
+      옛 일정(lkdvs10t4134j5sq0vhcpms2j8)은 삭제했다.
 
 # Google 연락처의 생일 필드에서 캘린더로 자동 동기화되는 것들.
 # 캘린더에 직접 만들지 마라 — 같은 사람이 두 번 뜬다. 고칠 일이 있으면 연락처를 고친다.
 from_contacts:
-  - dday_id: junhui-birthday
-    summary: "나준희님의 생일"
-    issue: "연락처에 08-30 으로 들어 있다. 정본은 08-31 (본인 확인함). 연락처를 고쳐야 한다."
   - dday_id: jesussi-birthday
+    event_id: avk7ipn29oea29u3u1k8bi07as
     summary: "정희현 제수씨님의 생일"
-    issue: "'정희현(작은엄마)' 로 연락처가 하나 더 있어 캘린더에 두 번 뜬다."
   - dday_id: younghu-birthday
+    event_id: lu9c345atfgei588jatdlc9tco
     summary: "나영후님의 생일"
+
+# 2026-08-31 에 정리한 중복. 사람마다 정확히 한 번씩만 뜨는 것을 확인했다.
+removed_duplicates:
+  - "정희현(작은엄마)님의 생일 (c579pui71amlgctecelmulvv4g) — 정희현 중복"
+  - "나융희님의 생일 (piegaqf2tijhmn9lqeguu80e1k) — 본인 생일 중복"
+  - "Happy birthday! (um9hvfko92vsipokhdl758onig) — 본인 생일 중복, 2025년에 따로 만들어진 것"
+  - "나준희님의 생일 (lkdvs10t4134j5sq0vhcpms2j8) — 08-30 오기, 08-31 로 새로 만들며 삭제"
