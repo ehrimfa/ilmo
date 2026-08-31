@@ -5,6 +5,7 @@
 
 ```
 data/ddays.yaml     정본 데이터 — 여기만 고치면 된다
+data/calendar.yaml  Google 캘린더 등록 현황 (어느 일정에 반영돼 있는지)
 scripts/dday.py     D-day 계산 / 검증 / ICS 생성
 dist/ddays.ics      캘린더 파일 (생성물)
 CLAUDE.md           Claude 비서용 작업 규칙
@@ -49,7 +50,15 @@ python3 scripts/dday.py list
 
 D-day는 매일 달라지므로 표에 적지 않는다. `scripts/dday.py list` 로 확인한다.
 
-## 캘린더에 넣기
+## Google 캘린더
+
+14건 모두 기본 캘린더에 등록되어 있어 폰·PC 어디서든 보이고, **당일 오전 9시와 1주일 전 오전 9시**에
+알림이 온다. 음력 생신 4건은 매년 양력 날짜가 달라 반복 규칙으로 표현할 수 없어서, 한 일정 안에
+발생일을 2036~2037년까지 나열해 뒀다. 어느 기념일이 어느 일정인지는 `data/calendar.yaml` 에 있다.
+
+나준희·정희현·나영후 세 사람은 Google 연락처의 생일에서 자동으로 오고 있어 중복을 피해 넣지 않았다.
+
+## ICS 파일로 넣기
 
 `dist/ddays.ics` 를 Google 캘린더 등에서 가져오기(import) 하면 된다. 당일 오전 9시 알림이 들어 있다.
 

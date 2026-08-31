@@ -1,0 +1,64 @@
+# Google 캘린더 등록 현황
+#
+# data/ddays.yaml 이 정본이고, 이 파일은 "그 정본이 캘린더의 어느 일정에 반영돼 있는지" 를 적어둔 것이다.
+# 기념일을 고쳤으면 여기 적힌 event_id 를 update 하면 된다. 새로 만들면 중복이 생긴다.
+
+calendar_id: nayoonghee78@gmail.com     # 기본 캘린더
+registered_on: 2026-08-31
+reminders: [당일 09:00, 1주 전 09:00]     # overrideReminders: popup -540, popup 9540
+
+# 음력 4건: 매년 양력 날짜가 달라 RRULE 로 표현할 수 없다.
+# 한 일정에 RDATE 로 발생일을 나열해 두었다. 아래 through 연도가 지나기 전에 갱신해야 한다.
+lunar:
+  - dday_id: mother-in-law-birthday
+    event_id: hr03fq6779gv5nmdr9vrs9p35o
+    summary: "어머님 오려옥 생신"
+    through: 2036
+  - dday_id: father-birthday
+    event_id: 2ga9lj0988qrirhhias1nfhfh8
+    summary: "아버지 나정평 생신"
+    through: 2037
+  - dday_id: mother-birthday
+    event_id: rrsua9thulgenfd9emnut7u2ec
+    summary: "어머니 김광순 생신"
+    through: 2037
+  - dday_id: father-in-law-birthday
+    event_id: 2mci7a346896qevmjtma9aq4d4
+    summary: "아버님 박철완 생신"
+    through: 2037
+
+# 양력: RRULE:FREQ=YEARLY 로 매년 자동 반복된다. 갱신할 일이 없다.
+yearly:
+  - dday_id: wedding-ours
+    event_id: uagrv9036e66t4csa3lkd8kv4s
+    summary: "결혼기념일 (나융희·박혜상)"
+  - dday_id: wedding-parents
+    event_id: f5j15hu24fthh1jlu0hue27sq4
+    summary: "결혼기념일 (아버지 나정평·어머니 김광순)"
+  - dday_id: wedding-parents-in-law
+    event_id: j2lrki75s156pk52178p337l9k
+    summary: "결혼기념일 (아버님 박철완·어머님 오려옥)"
+  - dday_id: hyesang-birth
+    event_id: muo9fho83f66m7g8bgpakdbqj4
+    summary: "박혜상 생일 (아내)"
+  - dday_id: eunhye-birth
+    event_id: vieuvv286shs3qpabvbmf80ums
+    summary: "나은혜 생일 (자녀)"
+  - dday_id: hyerim-birth
+    event_id: 6n3q2geejv0quslo656ohrmkfk
+    summary: "나혜림 생일 (자녀)"
+  - dday_id: jinho-birthday
+    event_id: f82b2b11ff3dvunpj1ja35hvn0
+    summary: "박진호 생일 (처남)"
+
+# Google 연락처의 생일 필드에서 캘린더로 자동 동기화되는 것들.
+# 캘린더에 직접 만들지 마라 — 같은 사람이 두 번 뜬다. 고칠 일이 있으면 연락처를 고친다.
+from_contacts:
+  - dday_id: junhui-birthday
+    summary: "나준희님의 생일"
+    issue: "연락처에 08-30 으로 들어 있다. 정본은 08-31 (본인 확인함). 연락처를 고쳐야 한다."
+  - dday_id: jesussi-birthday
+    summary: "정희현 제수씨님의 생일"
+    issue: "'정희현(작은엄마)' 로 연락처가 하나 더 있어 캘린더에 두 번 뜬다."
+  - dday_id: younghu-birthday
+    summary: "나영후님의 생일"
